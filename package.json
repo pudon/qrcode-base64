@@ -1,0 +1,54 @@
+{
+  "name": "qrcode-base64",
+  "version": "1.1.0",
+  "description": "Generate base64 PNG QR codes without canvas — zero dependencies. Works in WeChat Mini Program, Node, browsers, Vue and React.",
+  "main": "dist/qrcode-base64.cjs",
+  "module": "dist/qrcode-base64.esm.mjs",
+  "types": "dist/qrcode-base64.d.ts",
+  "unpkg": "dist/qrcode-base64.umd.js",
+  "jsdelivr": "dist/qrcode-base64.umd.js",
+  "exports": {
+    ".": {
+      "types": "./dist/qrcode-base64.d.ts",
+      "import": "./dist/qrcode-base64.esm.mjs",
+      "require": "./dist/qrcode-base64.cjs",
+      "default": "./dist/qrcode-base64.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build && node scripts/sync-artifacts.mjs",
+    "test": "node test/regression.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "qrcode",
+    "qr-code",
+    "qr",
+    "base64",
+    "weapp",
+    "miniprogram",
+    "二维码"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pudon/qrcode-base64.git"
+  },
+  "author": "pudon",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1",
+    "prettier": "^3.9.6",
+    "vite": "^7.1.12"
+  }
+}

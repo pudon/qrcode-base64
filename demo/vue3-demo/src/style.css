@@ -1,0 +1,28 @@
+:root {
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --border: #e6e8ef;
+  --text: #1f2328;
+  --text-muted: #6b7280;
+  --primary: #534ab7;
+  --primary-strong: #3c3489;
+  --primary-soft: #eeedfe;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
