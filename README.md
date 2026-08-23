@@ -1,6 +1,6 @@
 # qrcode-base64
 
-English | [简体中文](https://github.com/pudon/qrcode-base64/blob/main/README.zh-CN.md)
+English | [简体中文](https://github.com/pudon/qrcode-base64/blob/master/README.zh-CN.md)
 
 Generate base64-encoded QR codes without canvas. Zero runtime dependencies. Works in Vue2 / Vue3 / React / WeChat Mini Program / Node / browsers.
 

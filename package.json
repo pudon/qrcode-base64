@@ -23,8 +23,6 @@
     "build": "vite build && node scripts/sync-artifacts.mjs",
     "test": "node test/regression.mjs",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -43,12 +41,11 @@
   "author": "pudon",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.1",
-    "prettier": "^3.9.6",
-    "vite": "^7.1.12"
+    "vite": "^8.2.2"
   }
 }

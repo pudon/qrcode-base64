@@ -20,12 +20,13 @@ export default defineConfig({
     },
     // 小程序基础库保守目标
     target: 'es2015',
-    minify: 'esbuild',
+    minify: 'oxc',
     emptyOutDir: true,
     rollupOptions: {
       output: {
         // 具名与默认导出同时保留：import { drawImg } / import qrcode / require()
-        exports: 'named'
+        exports: 'named',
+        minify: { compress: true, mangle: true, codegen: true }
       }
     }
   }
