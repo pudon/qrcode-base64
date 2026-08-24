@@ -2,6 +2,8 @@
 
 [English](https://github.com/pudon/qrcode-base64/blob/master/README.md) | 简体中文
 
+**[在线演示 →](https://pudon.github.io/qrcode-base64/)**
+
 生成 base64 编码的二维码，不依赖 canvas，零运行时依赖。可用于 Vue2 / Vue3 / React / 微信小程序 / Node / 浏览器等。
 
 `drawImg(text)` 返回 `data:image/png;base64,...` 字符串，直接给 `<image>` / `<img>` 当 src 用。
