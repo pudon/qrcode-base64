@@ -1,6 +1,6 @@
 {
   "name": "qrcode-base64",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate base64 PNG QR codes without canvas — zero dependencies. Works in WeChat Mini Program, Node, browsers, Vue and React.",
   "main": "dist/qrcode-base64.cjs",
   "module": "dist/qrcode-base64.esm.mjs",
