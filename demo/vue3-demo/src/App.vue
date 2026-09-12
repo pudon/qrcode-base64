@@ -7,6 +7,7 @@ const errorCorrectLevel = ref('M');
 const size = ref(500);
 const colorDark = ref('#000000');
 const colorLight = ref('#ffffff');
+const transparentBackground = ref(false);
 const copied = ref(false);
 
 const levels = [
@@ -26,7 +27,7 @@ const qrcodeURL = computed(() => {
       errorCorrectLevel: errorCorrectLevel.value,
       size: size.value,
       colorDark: colorDark.value,
-      colorLight: colorLight.value
+      colorLight: transparentBackground.value ? 'transparent' : colorLight.value
     });
   } catch (e) {
     console.error(e);
@@ -65,7 +66,9 @@ const codeSnippet = computed(() => {
   if (colorDark.value.toLowerCase() !== DEFAULTS.colorDark) {
     opts.push(`colorDark: '${colorDark.value}'`);
   }
-  if (colorLight.value.toLowerCase() !== DEFAULTS.colorLight) {
+  if (transparentBackground.value) {
+    opts.push("colorLight: 'transparent'");
+  } else if (colorLight.value.toLowerCase() !== DEFAULTS.colorLight) {
     opts.push(`colorLight: '${colorLight.value}'`);
   }
 
@@ -185,11 +188,20 @@ async function copy() {
               </span>
             </label>
             <label class="color-row">
-              <input type="color" v-model="colorLight" class="color-picker" />
+              <input
+                type="color"
+                v-model="colorLight"
+                class="color-picker"
+                :disabled="transparentBackground"
+              />
               <span class="color-text">
                 <span class="color-key">背景（底）</span>
-                <span class="color-value">{{ colorLight }}</span>
+                <span class="color-value">{{ transparentBackground ? '透明' : colorLight }}</span>
               </span>
+            </label>
+            <label class="transparent-row">
+              <input v-model="transparentBackground" type="checkbox" />
+              <span>透明背景</span>
             </label>
           </div>
         </div>
@@ -420,6 +432,15 @@ input[type='range'] {
 .color-value {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   color: var(--text);
+}
+
+.transparent-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
 .card.code {

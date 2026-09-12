@@ -78,6 +78,20 @@ function validatePng(dataUrl) {
   return { ok: true, width };
 }
 
+function readPngChunks(dataUrl) {
+  const bytes = Buffer.from(dataUrl.slice('data:image/png;base64,'.length), 'base64');
+  const chunks = [];
+  let off = 8;
+  while (off < bytes.length) {
+    const len = bytes.readUInt32BE(off);
+    const type = bytes.toString('ascii', off + 4, off + 8);
+    chunks.push({ type, data: bytes.slice(off + 8, off + 8 + len) });
+    off += 12 + len;
+    if (type === 'IEND') break;
+  }
+  return chunks;
+}
+
 // [text, options, 请求的 size]
 const cases = [
   ['github.com/pudon', { typeNumber: 4, errorCorrectLevel: 'M', size: 500 }, 500],
@@ -129,6 +143,34 @@ for (const [text, options, requestedSize] of cases) {
 
   const note = v.width === requestedSize ? '' : ` ← 请求 ${requestedSize}px`;
   console.log(`PASS  ${label}  (${out.length} chars, PNG ${v.width}px${note})`);
+}
+
+const transparent = modern.drawImg('transparent background', {
+  size: 120,
+  colorLight: 'transparent'
+});
+const transparentChunks = readPngChunks(transparent);
+const transparency = transparentChunks.find((chunk) => chunk.type === 'tRNS')?.data;
+if (!transparency || transparency[0] !== 255 || transparency[1] !== 0) {
+  failed += 1;
+  console.log('FAIL  transparent background  tRNS 值错误');
+} else {
+  console.log('PASS  transparent background  colorLight=transparent 写入 tRNS=[255,0]');
+}
+
+const opaqueChunks = readPngChunks(modern.drawImg('opaque background', { colorLight: '#123456' }));
+const opaquePalette = opaqueChunks.find((chunk) => chunk.type === 'PLTE')?.data;
+if (
+  opaqueChunks.some((chunk) => chunk.type === 'tRNS') ||
+  !opaquePalette ||
+  opaquePalette[3] !== 0x12 ||
+  opaquePalette[4] !== 0x34 ||
+  opaquePalette[5] !== 0x56
+) {
+  failed += 1;
+  console.log('FAIL  colorLight background  普通背景色调色板或透明度错误');
+} else {
+  console.log('PASS  colorLight background  保留 RGB 调色板且保持不透明');
 }
 
 if (failed > 0) {

@@ -55,7 +55,7 @@ UMD, global name `QRCode`:
 | `errorCorrectLevel` | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'` | Error correction level |
 | `size` | `number` | `500` | Image edge length in px — a target value, see below |
 | `colorDark` | `string` | `'#000000'` | Module color, `#RRGGBB` or `#RGB` |
-| `colorLight` | `string` | `'#ffffff'` | Background color, same format |
+| `colorLight` | `string` | `'#ffffff'` | Background color, same format; use `'transparent'` for a transparent background |
 
 `typeNumber` counts modules, `size` counts pixels — the two are unrelated.
 

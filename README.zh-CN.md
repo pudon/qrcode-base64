@@ -55,7 +55,7 @@ UMD，全局名 `QRCode`：
 | `errorCorrectLevel` | `'L' \| 'M' \| 'Q' \| 'H'` | `'M'` | 纠错等级 |
 | `size` | `number` | `500` | 图片边长（px），目标值，见下 |
 | `colorDark` | `string` | `'#000000'` | 码点颜色，`#RRGGBB` 或 `#RGB` |
-| `colorLight` | `string` | `'#ffffff'` | 背景色，格式同上 |
+| `colorLight` | `string` | `'#ffffff'` | 背景色，格式同上；传 `'transparent'` 可生成透明背景 |
 
 `typeNumber` 是格子数，`size` 是像素数，两者无关。
 

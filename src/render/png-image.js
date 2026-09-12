@@ -33,6 +33,7 @@ var pngImage = function (width, height, colorDark, colorLight) {
   var _data = new Array(_width * _height);
   var _dark = parseColor(colorDark, [0, 0, 0]);
   var _light = parseColor(colorLight, [255, 255, 255]);
+  var _lightTransparent = typeof colorLight === 'string' && colorLight.toLowerCase() === 'transparent';
 
   var _this = {};
 
@@ -148,6 +149,11 @@ var pngImage = function (width, height, colorDark, colorLight) {
       _light[1],
       _light[2]
     ]);
+
+    // tRNS 为索引色调色板提供透明度：码点保持不透明，背景索引透明。
+    if (_lightTransparent) {
+      writeChunk(out, 'tRNS', [255, 0]);
+    }
 
     writeChunk(out, 'IDAT', getZlibStream(getScanlines()));
     writeChunk(out, 'IEND', null);

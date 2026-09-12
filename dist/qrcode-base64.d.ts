@@ -17,7 +17,7 @@ export interface DrawImgOptions {
   size?: number;
   /** 码点颜色，'#RRGGBB' 或 '#RGB'，默认 '#000000' */
   colorDark?: string;
-  /** 背景色，格式同上，默认 '#ffffff' */
+  /** 背景色，格式同上，默认 '#ffffff'；传 'transparent' 可生成透明背景 */
   colorLight?: string;
 }
 
